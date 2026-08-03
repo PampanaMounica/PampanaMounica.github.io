@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pampana Mounica — IT Undergraduate & Full-Stack Developer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#191d2b;
+    --paper:#faf9f6;
+    --paper-dim:#f1efe9;
+    --indigo:#39447a;
+    --indigo-deep:#232a52;
+    --teal:#2f6f62;
+    --line:#dedad1;
+    --muted:#6b6f7a;
+    --gold:#b08a3e;
+    --radius:2px;
+    --maxw:1040px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'IBM Plex Sans', sans-serif;
+    -webkit-font-smoothing:antialiased;
+    line-height:1.6;
+  }
+  ::selection{background:var(--indigo); color:#fff;}
+
+  h1,h2,h3{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    letter-spacing:-0.01em;
+    margin:0;
+    color:var(--indigo-deep);
+  }
+
+  .mono{
+    font-family:'IBM Plex Mono', monospace;
+  }
+
+  a{color:inherit;}
+
+  .wrap{
+    max-width:var(--maxw);
+    margin:0 auto;
+    padding:0 32px;
+  }
+
+  /* ---------- Nav ---------- */
+  header{
+    position:sticky;
+    top:0;
+    z-index:50;
+    background:rgba(250,249,246,0.88);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  nav.wrap{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    height:64px;
+  }
+  .brand{
+    font-family:'Fraunces', serif;
+    font-weight:700;
+    font-size:18px;
+    color:var(--indigo-deep);
+    letter-spacing:0.01em;
+  }
+  .brand span{color:var(--teal);}
+  .navlinks{
+    display:flex;
+    gap:28px;
+    list-style:none;
+    margin:0; padding:0;
+  }
+  .navlinks a{
+    text-decoration:none;
+    font-size:14px;
+    color:var(--ink);
+    font-weight:500;
+    position:relative;
+    padding-bottom:4px;
+  }
+  .navlinks a::after{
+    content:"";
+    position:absolute;
+    left:0; bottom:0;
+    width:0%; height:1px;
+    background:var(--indigo);
+    transition:width .25s ease;
+  }
+  .navlinks a:hover::after{width:100%;}
+  .navtoggle{display:none;}
+
+  /* ---------- Hero ---------- */
+  .hero{
+    padding:96px 0 80px;
+    border-bottom:1px solid var(--line);
+    position:relative;
+    overflow:hidden;
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns:1.3fr 0.9fr;
+    gap:48px;
+    align-items:end;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    color:var(--teal);
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:22px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:26px; height:1px;
+    background:var(--teal);
+    display:inline-block;
+  }
+  .hero h1{
+    font-size:clamp(40px, 6vw, 68px);
+    line-height:1.02;
+    margin-bottom:20px;
+  }
+  .hero h1 em{
+    font-style:italic;
+    color:var(--teal);
+  }
+  .hero p.lede{
+    font-size:18px;
+    color:var(--muted);
+    max-width:52ch;
+    margin-bottom:28px;
+  }
+  .hero-actions{
+    display:flex;
+    gap:14px;
+    flex-wrap:wrap;
+  }
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:12px 22px;
+    border-radius:var(--radius);
+    font-size:14px;
+    font-weight:600;
+    text-decoration:none;
+    border:1px solid var(--indigo-deep);
+    transition:all .2s ease;
+  }
+  .btn-primary{
+    background:var(--indigo-deep);
+    color:#fff;
+  }
+  .btn-primary:hover{background:var(--indigo);}
+  .btn-ghost{
+    background:transparent;
+    color:var(--indigo-deep);
+  }
+  .btn-ghost:hover{background:var(--paper-dim);}
+
+  .hero-card{
+    border:1px solid var(--line);
+    background:#fff;
+    padding:24px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    color:var(--muted);
+    box-shadow:6px 6px 0 var(--paper-dim);
+  }
+  .hero-card .title-line{color:var(--indigo-deep); font-weight:600; margin-bottom:14px;}
+  .hero-card .kw{color:var(--teal);}
+  .hero-card .str{color:var(--gold);}
+  .stat-row{
+    display:flex;
+    justify-content:space-between;
+    margin-top:18px;
+    padding-top:14px;
+    border-top:1px dashed var(--line);
+    font-family:'IBM Plex Sans',sans-serif;
+  }
+  .stat-row .num{
+    font-family:'Fraunces', serif;
+    font-size:22px;
+    color:var(--indigo-deep);
+    font-weight:600;
+    display:block;
+  }
+  .stat-row .lbl{font-size:11px; color:var(--muted); text-transform:uppercase; letter-spacing:0.05em;}
+
+  /* ---------- Sections generic ---------- */
+  section{padding:72px 0;}
+  section.alt{background:var(--paper-dim); border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
+  .section-head{
+    display:flex;
+    align-items:baseline;
+    gap:16px;
+    margin-bottom:40px;
+    flex-wrap:wrap;
+  }
+  .section-head .idx{
+    font-family:'IBM Plex Mono', monospace;
+    color:var(--teal);
+    font-size:14px;
+  }
+  .section-head h2{font-size:30px;}
+  .section-sub{color:var(--muted); font-size:15px; margin-top:6px; max-width:60ch;}
+
+  /* ---------- About ---------- */
+  .about-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:48px;
+  }
+  .about-grid p{color:var(--ink); margin-bottom:16px;}
+  .edu-item{
+    border-left:2px solid var(--line);
+    padding-left:18px;
+    margin-bottom:22px;
+    position:relative;
+  }
+  .edu-item::before{
+    content:"";
+    position:absolute;
+    left:-5px; top:4px;
+    width:8px; height:8px;
+    border-radius:50%;
+    background:var(--indigo);
+  }
+  .edu-item h3{font-size:16px; color:var(--ink); font-weight:600; font-family:'IBM Plex Sans',sans-serif;}
+  .edu-item .meta{font-size:13px; color:var(--muted); margin-top:2px;}
+  .edu-item .score{
+    display:inline-block;
+    margin-top:6px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    background:#fff;
+    border:1px solid var(--line);
+    padding:2px 8px;
+  }
+
+  /* ---------- Skills ---------- */
+  .skills-cols{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    gap:0;
+    border:1px solid var(--line);
+  }
+  .skill-col{
+    padding:24px;
+    border-right:1px solid var(--line);
+  }
+  .skill-col:last-child{border-right:none;}
+  .skill-col h4{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    text-transform:uppercase;
+    letter-spacing:0.06em;
+    color:var(--teal);
+    margin-bottom:14px;
+  }
+  .skill-col ul{list-style:none; margin:0; padding:0;}
+  .skill-col li{
+    font-size:14px;
+    padding:6px 0;
+    border-bottom:1px dashed var(--line);
+  }
+  .skill-col li:last-child{border-bottom:none;}
+
+  /* ---------- Projects ---------- */
+  .project{
+    border:1px solid var(--line);
+    background:#fff;
+    margin-bottom:24px;
+    overflow:hidden;
+  }
+  .project-head{
+    padding:20px 26px;
+    background:var(--indigo-deep);
+    color:#fff;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:8px;
+  }
+  .project-head .sig{color:#a9c2ff;}
+  .project-head .yr{color:#cfd6f2; font-size:12px;}
+  .project-body{padding:26px;}
+  .project-body h3{
+    font-family:'Fraunces', serif;
+    font-size:22px;
+    margin-bottom:6px;
+    color:var(--indigo-deep);
+  }
+  .project-body h3 a{
+    color:inherit;
+    text-decoration:none;
+    border-bottom:1px solid transparent;
+    transition:border-color .2s ease, color .2s ease;
+  }
+  .project-body h3 a:hover{
+    color:var(--teal);
+    border-bottom-color:var(--teal);
+  }
+  .project-body h3 a::after{
+    content:" ↗";
+    font-size:15px;
+    font-family:'IBM Plex Mono', monospace;
+  }
+  .project-body .stack{
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+    margin-bottom:16px;
+  }
+  .tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    padding:3px 9px;
+    border:1px solid var(--line);
+    color:var(--muted);
+    background:var(--paper-dim);
+  }
+  .project-body ul{margin:0; padding-left:18px; color:var(--ink);}
+  .project-body li{margin-bottom:6px; font-size:14.5px;}
+
+  /* ---------- Experience timeline ---------- */
+  .timeline{position:relative; padding-left:28px;}
+  .timeline::before{
+    content:"";
+    position:absolute;
+    left:5px; top:6px; bottom:6px;
+    width:1px;
+    background:var(--line);
+  }
+  .tl-item{position:relative; margin-bottom:34px;}
+  .tl-item:last-child{margin-bottom:0;}
+  .tl-item::before{
+    content:"";
+    position:absolute;
+    left:-28px; top:4px;
+    width:11px; height:11px;
+    background:var(--paper);
+    border:2px solid var(--teal);
+    border-radius:50%;
+  }
+  .tl-item h3{font-size:17px; font-family:'IBM Plex Sans',sans-serif; font-weight:600; color:var(--ink);}
+  .tl-item .meta{font-size:13px; color:var(--teal); font-family:'IBM Plex Mono',monospace; margin:4px 0 8px;}
+  .tl-item p{margin:0; color:var(--muted); font-size:14.5px; max-width:65ch;}
+
+  /* ---------- Certifications & coding profiles ---------- */
+  .two-col{
+    display:grid;
+    grid-template-columns:1.1fr 0.9fr;
+    gap:48px;
+  }
+  .cert-list{list-style:none; margin:0; padding:0;}
+  .cert-list li{
+    padding:14px 0;
+    border-bottom:1px solid var(--line);
+    font-size:14.5px;
+    display:flex;
+    gap:12px;
+  }
+  .cert-list li:first-child{padding-top:0;}
+  .cert-list .mark{color:var(--gold); font-family:'IBM Plex Mono',monospace;}
+
+  .profile-card{
+    border:1px solid var(--line);
+    background:#fff;
+    padding:20px;
+    margin-bottom:14px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    text-decoration:none;
+    color:inherit;
+    transition:border-color .2s ease, transform .2s ease;
+  }
+  .profile-card:hover{
+    border-color:var(--teal);
+    transform:translateX(2px);
+  }
+  .profile-card .name{font-weight:600; font-size:15px;}
+  .profile-card .desc{font-size:12.5px; color:var(--muted);}
+  .profile-card .badge{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12px;
+    color:var(--teal);
+    border:1px solid var(--teal);
+    padding:3px 10px;
+  }
+
+  /* ---------- Contact ---------- */
+  .contact{
+    text-align:center;
+    padding:90px 0 100px;
+  }
+  .contact h2{font-size:clamp(30px,5vw,46px); margin-bottom:14px;}
+  .contact p{color:var(--muted); max-width:50ch; margin:0 auto 30px;}
+  .contact-links{
+    display:flex;
+    justify-content:center;
+    gap:16px;
+    flex-wrap:wrap;
+  }
+
+  footer{
+    border-top:1px solid var(--line);
+    padding:26px 0;
+    font-size:13px;
+    color:var(--muted);
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:10px;
+  }
+
+  /* ---------- Reveal on scroll ---------- */
+  .reveal{
+    opacity:0;
+    transform:translateY(16px);
+    transition:opacity .6s ease, transform .6s ease;
+  }
+  .reveal.in{opacity:1; transform:translateY(0);}
+
+  @media (prefers-reduced-motion: reduce){
+    .reveal{opacity:1; transform:none; transition:none;}
+    html{scroll-behavior:auto;}
+  }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width:860px){
+    .hero-grid, .about-grid, .two-col{grid-template-columns:1fr;}
+    .skills-cols{grid-template-columns:1fr 1fr;}
+    .skill-col{border-bottom:1px solid var(--line);}
+    .skill-col:nth-child(2n){border-right:none;}
+    .navlinks{
+      position:fixed;
+      top:64px; right:0;
+      background:var(--paper);
+      flex-direction:column;
+      width:220px;
+      border-left:1px solid var(--line);
+      border-bottom:1px solid var(--line);
+      padding:18px 24px;
+      gap:16px;
+      transform:translateX(100%);
+      transition:transform .25s ease;
+    }
+    .navlinks.open{transform:translateX(0);}
+    .navtoggle{
+      display:block;
+      background:none;
+      border:1px solid var(--line);
+      padding:8px 10px;
+      font-family:'IBM Plex Mono',monospace;
+      cursor:pointer;
+    }
+  }
+  @media (max-width:520px){
+    .skills-cols{grid-template-columns:1fr;}
+    .skill-col{border-right:none;}
+    .hero{padding:64px 0 56px;}
+    section{padding:56px 0;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="wrap">
+    <div class="brand">Mounica<span> </span>Pampana</div>
+    <ul class="navlinks" id="navlinks">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#credentials">Credentials</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <button class="navtoggle" id="navtoggle">MENU</button>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div class="reveal in">
+      <div class="eyebrow">IT Undergraduate · Full-Stack Developer</div>
+      <h1>Building software the way I was taught to think —<br><em>structured, reusable, and built to last.</em></h1>
+      <p class="lede">I'm Pampana Mounica, a B.Tech Information Technology student who turns Java and OOP fundamentals into full-stack applications — from community platforms to exam-prep tools used by real students.</p>
+      <div class="hero-actions">
+        <a href="#projects" class="btn btn-primary">View my work</a>
+      </div>
+    </div>
+    <div class="hero-card reveal in">
+      <div class="title-line">Mounica.java</div>
+      <div><span class="kw">public class</span> Mounica <span class="kw">implements</span> Developer {</div>
+      <div>&nbsp;&nbsp;String branch = <span class="str">"Information Technology"</span>;</div>
+      <div>&nbsp;&nbsp;String[] core = {<span class="str">"Java"</span>, <span class="str">"Spring Boot"</span>, <span class="str">"Angular"</span>};</div>
+      <div>&nbsp;&nbsp;<span class="kw">double</span> cgpa = 8.38;</div>
+      <div>}</div>
+      <div class="stat-row">
+        <div><span class="num">8.38</span><span class="lbl">CGPA</span></div>
+        <div><span class="num">3</span><span class="lbl">Full-stack projects</span></div>
+        <div><span class="num">100+</span><span class="lbl">LeetCode solved</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="wrap about-grid">
+    <div class="reveal">
+      <div class="section-head"><span class="idx mono">01</span><h2>About</h2></div>
+      <p>I'm currently in my final years of a B.Tech in Information Technology at Shri Vishnu Engineering College for Women, Bhimavaram, carrying a CGPA of 8.38. Before this, I completed a Diploma in Computer Engineering with 92%, which is where my foundation in core programming and OOP began.</p>
+      <p>What I care about most is writing code that's built the way OOP taught me to think: encapsulated, reusable, easy for the next person to extend. That mindset shows up in every project below — each one is a small system designed with clear boundaries, not just a script that works once.</p>
+      <p>Outside coursework, I stay sharp on LeetCode, CodeChef, and HackerRank, and I've spent time in real internship settings translating design requirements into working interfaces and experimenting hands-on with generative AI and LLMs.</p>
+    </div>
+    <div class="reveal">
+      <div class="edu-item">
+        <h3>B.Tech in Information Technology</h3>
+        <div class="meta">Shri Vishnu Engineering College for Women, Bhimavaram · 2024 – 2027</div>
+        <span class="score">CGPA 8.38</span>
+      </div>
+      <div class="edu-item">
+        <h3>Diploma in Computer Engineering</h3>
+        <div class="meta">Smt. B. Seetha Polytechnic, Bhimavaram · 2021 – 2024</div>
+        <span class="score">92%</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="alt" id="skills">
+  <div class="wrap">
+    <div class="section-head reveal"><span class="idx mono">02</span><h2>Technical skills</h2></div>
+    <div class="skills-cols reveal">
+      <div class="skill-col">
+        <h4>Languages</h4>
+        <ul>
+          <li>Java (Core, OOP)</li>
+          <li>JavaScript</li>
+          <li>C</li>
+        </ul>
+      </div>
+      <div class="skill-col">
+        <h4>OOP Concepts</h4>
+        <ul>
+          <li>Encapsulation</li>
+          <li>Inheritance</li>
+          <li>Polymorphism</li>
+          <li>Abstraction</li>
+        </ul>
+      </div>
+      <div class="skill-col">
+        <h4>Web & Backend</h4>
+        <ul>
+          <li>HTML / CSS</li>
+          <li>Angular</li>
+          <li>Spring Boot</li>
+        </ul>
+      </div>
+      <div class="skill-col">
+        <h4>Data & Tools</h4>
+        <ul>
+          <li>PostgreSQL</li>
+          <li>MongoDB</li>
+          <li>GitHub · VS Code</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="idx mono">03</span>
+      <div>
+        <h2>Projects</h2>
+        <div class="section-sub">Three full-stack systems, each solving a real access or coordination problem for students and communities.</div>
+      </div>
+    </div>
+
+    <div class="project reveal">
+      <div class="project-head">
+        <span><span class="sig">class</span> Barterly <span class="sig">implements</span> SkillExchange</span>
+        <span class="yr">2026</span>
+      </div>
+      <div class="project-body">
+        <h3><a href="https://github.com/PampanaMounica/Barterly" target="_blank" rel="noopener">Barterly — Community Skill Exchange Platform</a></h3>
+        <div class="stack">
+          <span class="tag">Java</span><span class="tag">Spring Boot</span><span class="tag">Angular</span><span class="tag">PostgreSQL</span>
+        </div>
+        <ul>
+          <li>Engineered a full-stack platform where people share, discover, and learn skills from one another through an interactive web application.</li>
+          <li>Implemented RESTful APIs covering authentication, skill management, exchange requests, scheduling, and feedback.</li>
+          <li>Architected a PostgreSQL schema to manage users, skills, and exchange sessions efficiently.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="project reveal">
+      <div class="project-head">
+        <span><span class="sig">class</span> UPSCCompass <span class="sig">implements</span> ExamInsight</span>
+        <span class="yr">2026</span>
+      </div>
+      <div class="project-body">
+        <h3><a href="https://github.com/PampanaMounica/UPSC_Compass" target="_blank" rel="noopener">UPSC Compass — Exam Insight & Analysis Platform</a></h3>
+        <div class="stack">
+          <span class="tag">React</span><span class="tag">Node.js</span><span class="tag">MongoDB</span>
+        </div>
+        <ul>
+          <li>Built a full-stack platform helping UPSC aspirants prepare strategically for Prelims and Mains using topic-weightage and previous-year trends.</li>
+          <li>Analyzed NCERT, Prelims, and Mains datasets spanning 7,000+ records, cutting the time spent hunting across scattered resources.</li>
+          <li>Implemented RESTful APIs and a responsive React interface for structured, discoverable exam insights.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="project reveal">
+      <div class="project-head">
+        <span><span class="sig">class</span> PaperPedia <span class="sig">implements</span> ExamArchive</span>
+        <span class="yr">2025</span>
+      </div>
+      <div class="project-body">
+        <h3><a href="https://github.com/PampanaMounica/exam-website" target="_blank" rel="noopener">PaperPedia — Centralized Exam Paper Repository</a></h3>
+        <div class="stack">
+          <span class="tag">Django</span><span class="tag">Node.js</span><span class="tag">HTML</span><span class="tag">CSS</span>
+        </div>
+        <ul>
+          <li>Developed a centralized platform giving engineering students easy access to previous-year examination papers.</li>
+          <li>Organized 8 years of question papers across 8 engineering branches with efficient search and categorization.</li>
+          <li>Built backend modules for uploading, retrieving, and managing exam papers at scale.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="alt" id="experience">
+  <div class="wrap two-col">
+    <div class="reveal">
+      <div class="section-head"><span class="idx mono">04</span><h2>Experience</h2></div>
+      <div class="timeline">
+        <div class="tl-item">
+          <h3>Web Development Intern</h3>
+          <div class="meta">SkillDzire · 2025</div>
+          <p>Contributed to frontend development tasks in a professional workflow, translating design requirements into functional, responsive web interfaces.</p>
+        </div>
+        <div class="tl-item">
+          <h3>Generative AI with LLMs — Trainee</h3>
+          <div class="meta">SkillDzire · 2026</div>
+          <p>Worked hands-on with different generative AI models, building real-time projects to understand how LLMs are applied in practice.</p>
+        </div>
+      </div>
+    </div>
+    <div class="reveal">
+      <div class="section-head"><span class="idx mono">05</span><h2>Coding profiles</h2></div>
+      <a class="profile-card" href="https://leetcode.com/u/PampanaMounica/" target="_blank" rel="noopener">
+        <div><div class="name">LeetCode</div><div class="desc">100+ problems solved</div></div>
+        <span class="badge">Active</span>
+      </a>
+      <a class="profile-card" href="https://www.codechef.com/users/pampanamounica" target="_blank" rel="noopener">
+        <div><div class="name">CodeChef</div><div class="desc">Competitive programming practice</div></div>
+        <span class="badge">Active</span>
+      </a>
+      <a class="profile-card" href="https://www.hackerrank.com/profile/pampanamounica" target="_blank" rel="noopener">
+        <div><div class="name">HackerRank</div><div class="desc">Problem solving & DS/Algo practice</div></div>
+        <span class="badge">Active</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section id="credentials">
+  <div class="wrap">
+    <div class="section-head reveal"><span class="idx mono">06</span><h2>Certifications & achievements</h2></div>
+    <ul class="cert-list reveal">
+      <li><span class="mark">›</span> Cisco Networking Academy — Introduction to Networks, Switching, Routing and Wireless Essentials, Enterprise Networking, Security and Automation</li>
+      <li><span class="mark">›</span> Infosys Springboard — Python Basics & Software Development Concepts, Programming using Java</li>
+      <li><span class="mark">›</span> Power BI Workshop — Data Visualization Fundamentals</li>
+    </ul>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="wrap">
+    <h2>Let's build something together.</h2>
+    <p>I'm looking for internships and full-stack development opportunities where I can put my Java, Spring Boot, and Angular skills to work on real problems.</p>
+    <div class="contact-links">
+      <a href="mailto:pampanamounica@gmail.com" class="btn btn-primary">pampanamounica@gmail.com</a>
+      <a href="https://github.com/PampanaMounica" target="_blank" rel="noopener" class="btn btn-ghost">GitHub</a>
+      <a href="https://linkedin.com/in/mounica-pampana" target="_blank" rel="noopener" class="btn btn-ghost">LinkedIn</a>
+    </div>
+  </div>
+</section>
+
+<footer class="wrap">
+  <div>© 2026 Pampana Mounica</div>
+  <div class="mono">+91-8121515595</div>
+</footer>
+
+<script>
+  // Mobile nav toggle
+  const toggle = document.getElementById('navtoggle');
+  const links = document.getElementById('navlinks');
+  toggle.addEventListener('click', () => links.classList.toggle('open'));
+  links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => links.classList.remove('open')));
+
+  // Scroll reveal
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if(e.isIntersecting){
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  }, {threshold:0.12});
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
